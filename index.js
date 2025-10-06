@@ -7,8 +7,13 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const conn1 = mongoose.createConnection(process.env.MONGODB_URI_READ, { useNewUrlParser: true, useUnifiedTopology: true });
-const conn2 = mongoose.createConnection(process.env.MONGODB_URI_WRITE, { useNewUrlParser: true, useUnifiedTopology: true });
+const uriRead = process.env.MONGODB_URI_READ;
+
+const uriWrite = process.env.MONGODB_URI_WRITE;
+
+const conn1 = mongoose.createConnection(uriRead, {useNewUrlParser: true});
+
+const conn2 = mongoose.createConnection(uriWrite, {useNewUrlParser: true});
 
 const tactileSensationsSchema = {
    id_tactile: String,
